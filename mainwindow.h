@@ -18,6 +18,7 @@ public:
     const int HOME = 0;
     const int CRUD = 1;
     void setTypeScreen(int option);
+    void reset_list();
 private slots:
 
 
@@ -28,6 +29,14 @@ private slots:
     void on_btnBackEdit_clicked();
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_btnOk_clicked();
+
+    void on_btnEdit_clicked();
+
+    void on_btnRemove_clicked();
+
+    void on_btnSearchContact_clicked();
 
 private:
     Ui::MainWindow *ui;
