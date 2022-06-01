@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="telaInicial">
      <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -633,6 +633,10 @@ QPushButton:hover{
 	color: #fff;
 	font-size: 16px;
 	font-weight: 600;
+}
+
+QPushButton:hover{
+		background-color: #FF6060;
 }</string>
       </property>
       <property name="text">

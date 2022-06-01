@@ -191,6 +191,8 @@ void MainWindow::reset_list() {
 void MainWindow::on_btnEdit_clicked() { setTypeScreen(4); }
 
 void MainWindow::on_btnRemove_clicked() {
+  QMessageBox *messageBox = new QMessageBox();
+
   QMessageBox::StandardButton response = QMessageBox::question(
       this, "Excluir contato", "Tem certeza que deseja excluir esse contato?",
       QMessageBox::Yes | QMessageBox::No);
