@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Lista de Contatos</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #fff</string>
@@ -391,8 +391,20 @@ QLineEdit:focus{
 	padding-bottom: 0;
 }</string>
       </property>
+      <property name="inputMask">
+       <string/>
+      </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="maxLength">
+       <number>2</number>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLineEdit" name="inptMes">
@@ -435,8 +447,26 @@ QLineEdit:focus{
 	padding-bottom: 0;
 }</string>
       </property>
+      <property name="inputMask">
+       <string/>
+      </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="maxLength">
+       <number>2</number>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::LogicalMoveStyle</enum>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -444,7 +474,7 @@ QLineEdit:focus{
        <rect>
         <x>10</x>
         <y>340</y>
-        <width>49</width>
+        <width>351</width>
         <height>16</height>
        </rect>
       </property>
@@ -465,7 +495,7 @@ QLineEdit:focus{
        <rect>
         <x>10</x>
         <y>440</y>
-        <width>111</width>
+        <width>161</width>
         <height>16</height>
        </rect>
       </property>
@@ -486,7 +516,7 @@ QLineEdit:focus{
        <rect>
         <x>200</x>
         <y>440</y>
-        <width>111</width>
+        <width>161</width>
         <height>16</height>
        </rect>
       </property>

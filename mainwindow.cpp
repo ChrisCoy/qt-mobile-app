@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
   ui->listWidget->setSpacing(8);
   ui->listWidget->setIconSize(QSize(34, 34));
   /*******        ESTILIZAÇÃO     *******/
+
+  ui->inptDia->setValidator( new QIntValidator(0, 100, this) );
+  ui->inptMes->setValidator( new QIntValidator(0, 100, this) );
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -167,7 +170,7 @@ void MainWindow::on_btnOk_clicked() {
       if (contacts[i].name == "") {
         contacts[i].name = ui->inptNome->text().toStdString();
         contacts[i].month = ui->inptMes->text().toInt();
-        contacts[i].day = ui->inptNome->text().toInt();
+        contacts[i].day = ui->inptDia->text().toInt();
         setTypeScreen(1);
         break;
       }
@@ -191,7 +194,7 @@ void MainWindow::reset_list() {
 void MainWindow::on_btnEdit_clicked() { setTypeScreen(4); }
 
 void MainWindow::on_btnRemove_clicked() {
-  QMessageBox *messageBox = new QMessageBox();
+  //QMessageBox *messageBox = new QMessageBox();
 
   QMessageBox::StandardButton response = QMessageBox::question(
       this, "Excluir contato", "Tem certeza que deseja excluir esse contato?",
