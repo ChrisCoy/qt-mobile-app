@@ -11,7 +11,7 @@ int acaoTela = 0;
 int contactToEdit;
 
 typedef struct {
-  string name;
+  QString name;
   int month;
   int day;
 } Contacts;
@@ -65,6 +65,9 @@ void MainWindow::setTypeScreen(int option) {
     ui->btnBackEdit->setVisible(false);
     ui->btnBack->setVisible(true);
 
+    ui->inptNome->setClearButtonEnabled(true);
+    ui->inptDia->setClearButtonEnabled(true);
+    ui->inptMes->setClearButtonEnabled(true);
     ui->inptNome->setEnabled(true);
     ui->inptDia->setEnabled(true);
     ui->inptMes->setEnabled(true);
@@ -84,6 +87,9 @@ void MainWindow::setTypeScreen(int option) {
     ui->btnBackEdit->setVisible(false);
     ui->btnBack->setVisible(true);
 
+    ui->inptNome->setClearButtonEnabled(false);
+    ui->inptDia->setClearButtonEnabled(false);
+    ui->inptMes->setClearButtonEnabled(false);
     ui->inptNome->setEnabled(false);
     ui->inptDia->setEnabled(false);
     ui->inptMes->setEnabled(false);
@@ -103,6 +109,9 @@ void MainWindow::setTypeScreen(int option) {
     ui->btnBackEdit->setVisible(true);
     ui->btnBack->setVisible(false);
 
+    ui->inptNome->setClearButtonEnabled(true);
+    ui->inptDia->setClearButtonEnabled(true);
+    ui->inptMes->setClearButtonEnabled(true);
     ui->inptNome->setEnabled(true);
     ui->inptDia->setEnabled(true);
     ui->inptMes->setEnabled(true);
@@ -123,6 +132,9 @@ void MainWindow::on_btnBackEdit_clicked() // evento tela edit
   ui->btnBackEdit->setVisible(false);
   ui->btnBack->setVisible(true);
 
+  ui->inptNome->setClearButtonEnabled(false);
+  ui->inptDia->setClearButtonEnabled(false);
+  ui->inptMes->setClearButtonEnabled(false);
   ui->inptNome->setEnabled(false);
   ui->inptDia->setEnabled(false);
   ui->inptMes->setEnabled(false);
@@ -139,8 +151,8 @@ void MainWindow::on_listWidget_itemDoubleClicked(
 {
   setTypeScreen(3);
   for (int i = 0; i < 300; i++) {
-    if (contacts[i].name == item->text().toStdString()) {
-      ui->inptNome->setText(QString::fromStdString(contacts[i].name));
+    if (contacts[i].name == item->text()) {
+      ui->inptNome->setText(contacts[i].name);
       ui->inptMes->setText(QString::number(contacts[i].month));
       ui->inptDia->setText(QString::number(contacts[i].day));
       contactToEdit = i;
@@ -153,14 +165,13 @@ void MainWindow::on_btnOk_clicked() {
   if (acaoTela == 4) {                                                  // editando
     for (int i = 0; i < 300; i++) {
 
-      contacts[contactToEdit].name = ui->inptNome->text().toStdString();
+      contacts[contactToEdit].name = ui->inptNome->text();
       contacts[contactToEdit].month = ui->inptMes->text().toInt();
       contacts[contactToEdit].day = ui->inptDia->text().toInt();
 
       setTypeScreen(3);
 
-      ui->inptNome->setText(
-          QString::fromStdString(contacts[contactToEdit].name));
+      ui->inptNome->setText(contacts[contactToEdit].name);
       ui->inptMes->setText(QString::number(contacts[contactToEdit].month));
       ui->inptDia->setText(QString::number(contacts[contactToEdit].day));
       break;
@@ -168,7 +179,7 @@ void MainWindow::on_btnOk_clicked() {
   } else {                                                              // criando
     for (int i = 0; i < 300; i++) {
       if (contacts[i].name == "") {
-        contacts[i].name = ui->inptNome->text().toStdString();
+        contacts[i].name = ui->inptNome->text();
         contacts[i].month = ui->inptMes->text().toInt();
         contacts[i].day = ui->inptDia->text().toInt();
         setTypeScreen(1);
@@ -183,9 +194,8 @@ void MainWindow::reset_list() {
 
   for (int i = 0; i < 300; i++) {
     if (contacts[i].name != "") {
-      QListWidgetItem *item =
-          new QListWidgetItem(QIcon(":/src/img/iconPerson.png"),
-                              QString::fromStdString(contacts[i].name));
+      QListWidgetItem *item = new QListWidgetItem(
+          QIcon(":/src/img/iconPerson.png"), contacts[i].name);
       ui->listWidget->addItem(item);
     }
   }
@@ -213,12 +223,11 @@ void MainWindow::on_btnSearchContact_clicked()
     }else{
         ui->listWidget->clear();
         for (int i = 0; i < 300; i++) {
-            if (contacts[i].name.rfind(ui->inptSearchInput->text().toStdString()) == 0){
-                QListWidgetItem *item =
-                    new QListWidgetItem(QIcon(":/src/img/iconPerson.png"),
-                                        QString::fromStdString(contacts[i].name));
-                ui->listWidget->addItem(item);
-            }
+          if (contacts[i].name.startsWith(ui->inptSearchInput->text())) {
+            QListWidgetItem *item = new QListWidgetItem(
+                QIcon(":/src/img/iconPerson.png"), contacts[i].name);
+            ui->listWidget->addItem(item);
+          }
         }
     }
 }
